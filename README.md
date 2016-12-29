@@ -5,7 +5,8 @@ El director podría encontrarse con un cliente en el mismo equipo, y mantener co
 
 Falta por hacer:
 
--División del compose 
+-División del compose
+
 -Comunicación en diferentes nodos con los servicios
 
 Se debe tener el paquete docker-engine y docker-compose instalados.
