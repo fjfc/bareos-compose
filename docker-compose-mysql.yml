@@ -1,0 +1,55 @@
+bareos-dir:
+  #build: ../director-mysql
+  image: fjfernandez/bareos-dir-16.2-mysql-debian
+  ports:
+    - 9101:9101
+  image: fjfernandez/bareos-dir-16.2-mysql-debian
+  environment:
+    - DB_PASSWORD=ThisIsMySecretDBp4ssw0rd
+    - DB_HOST=bareos-db
+    - DB_PORT=3306
+    - BAREOS_FD_HOST=bareos-fd
+    - BAREOS_SD_HOST=bareos-sd
+    - BAREOS_FD_PASSWORD=ThisIsMySecretFDp4ssw0rd
+    - BAREOS_SD_PASSWORD=ThisIsMySecretSDp4ssw0rd
+    - BAREOS_WEBUI_PASSWORD=ThisIsMySecretUIp4ssw0rd
+    - SMTP_HOST=smtpd
+    - ADMIN_MAIL=fjfc83@gmail.com
+  links:
+    - bareos-fd:bareos-fd
+    - bareos-sd:bareos-sd
+    - bareos-db:bareos-db
+
+bareos-sd:
+  #build: ../storage
+  image: fjfernandez/bareos-sd-16.2-debian
+  ports:
+    - 9103:9103
+  environment:
+    - BAREOS_SD_PASSWORD=ThisIsMySecretSDp4ssw0rd
+
+bareos-fd:
+  #build: ../client
+  image: fjfernandez/bareos-fd-16.2-debian
+  environment:
+    - BAREOS_FD_PASSWORD=ThisIsMySecretFDp4ssw0rd
+  links:
+    - bareos-sd:bareos-sd
+
+bareos-webui:
+  #build: ../webui
+  image: fjfernandez/bareos-webui
+  ports:
+    - 8080:80
+  environment:
+    - BAREOS_DIR_HOST=bareos-dir
+  links:
+    - bareos-dir:bareos-dir
+
+bareos-db:
+  image: mysql:5.6
+  environment:
+    - MYSQL_ROOT_PASSWORD=ThisIsMySecretDBp4ssw0rd
+
+smtpd:
+  image: namshi/smtp
