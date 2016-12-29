@@ -3,6 +3,11 @@
 El objetivo de este compose es testar el sistema para adaptarlo a la escalabilidad de bareos con ello cada servicio es independiente no solo de si mismo sino de los demás. Lo que nos lleva a las diferentes combinaciones de servicios por ejemplo:
 El director podría encontrarse con un cliente en el mismo equipo, y mantener comunicación con un storage externo y un cliente a su vez que se encuentra en el mismo nodo que sustenta al storage con lo cual podrían programarse copias de ambos nodos y en uno de ellos se encontraría el storage y en el otro el director.
 
+Falta por hacer:
+
+-División del compose 
+-Comunicación en diferentes nodos con los servicios
+
 Se debe tener el paquete docker-engine y docker-compose instalados.
 
 Una vez descargado el repositorio accedemos al mismo
