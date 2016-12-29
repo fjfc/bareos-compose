@@ -1,9 +1,8 @@
 bareos-dir:
   #build: ../director-mysql
-  image: fjfernandez/bareos-dir-16.2-mysql-debian
+  image: fjfernandez/bareos-dir-16.2-mysql-debian:develop
   ports:
     - 9101:9101
-  image: fjfernandez/bareos-dir-16.2-mysql-debian
   environment:
     - DB_PASSWORD=ThisIsMySecretDBp4ssw0rd
     - DB_HOST=bareos-db
@@ -22,7 +21,7 @@ bareos-dir:
 
 bareos-sd:
   #build: ../storage
-  image: fjfernandez/bareos-sd-16.2-debian
+  image: fjfernandez/bareos-sd-16.2-debian:develop
   ports:
     - 9103:9103
   environment:
@@ -30,7 +29,7 @@ bareos-sd:
 
 bareos-fd:
   #build: ../client
-  image: fjfernandez/bareos-fd-16.2-debian
+  image: fjfernandez/bareos-fd-16.2-debian:develop
   environment:
     - BAREOS_FD_PASSWORD=ThisIsMySecretFDp4ssw0rd
   links:
@@ -38,7 +37,7 @@ bareos-fd:
 
 bareos-webui:
   #build: ../webui
-  image: fjfernandez/bareos-webui
+  image: fjfernandez/bareos-webui:develop
   ports:
     - 8080:80
   environment:
