@@ -32,4 +32,4 @@ Usuario: admin
 Contraseña: ThisIsMySecretUIp4ssw0rd
 
 Agradecimientos a Jandrada por sus recondaciones y consejos.
-y a barcus promotor del proyecto sobre el que me he basado para llevar a cabo dicho compose.
+Tambien a barcus promotor del proyecto sobre el que me he basado para llevar a cabo dicho compose.
