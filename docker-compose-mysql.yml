@@ -18,7 +18,8 @@ bareos-dir:
     - bareos-fd:bareos-fd
     - bareos-sd:bareos-sd
     - bareos-db:bareos-db
-
+  volumes:
+    - /root/bareos/bareos-dir:/etc/bareos
 bareos-sd:
   #build: ../storage
   image: fjfernandez/bareos-sd-16.2-debian:develop
@@ -26,7 +27,9 @@ bareos-sd:
     - 9103:9103
   environment:
     - BAREOS_SD_PASSWORD=ThisIsMySecretSDp4ssw0rd
-
+  volumes:
+    - /root/bareos/bareos-sd/config:/etc/bareos
+    - /root/bareos/bareos-sd/storage:/var/lib/bareos/storage
 bareos-fd:
   #build: ../client
   image: fjfernandez/bareos-fd-16.2-debian:develop
@@ -44,6 +47,8 @@ bareos-webui:
     - BAREOS_DIR_HOST=bareos-dir
   links:
     - bareos-dir:bareos-dir
+  volumes:
+    - /root/bareos/bareos-webui:/etc/bareos-webui
 
 bareos-db:
   image: mysql:5.6
