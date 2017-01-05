@@ -37,7 +37,8 @@ bareos-fd:
     - BAREOS_FD_PASSWORD=ThisIsMySecretFDp4ssw0rd
   links:
     - bareos-sd:bareos-sd
-
+  volumes:
+    - /root/bareos/bareos-fd/:/etc/bareos
 bareos-webui:
   #build: ../webui
   image: fjfernandez/bareos-webui:develop
